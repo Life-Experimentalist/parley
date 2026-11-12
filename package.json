@@ -1,0 +1,27 @@
+{
+  "name": "parley",
+  "version": "0.1.0",
+  "description": "Invoice by voice or text, send it through PayPal, and chase late payments with drafts you approve.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test \"test/**/*.test.js\"",
+    "doctor": "node scripts/doctor.js",
+    "link": "node scripts/link.js",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
+    "@fontsource/hind": "^5.3.0",
+    "@fontsource/yatra-one": "^5.3.0",
+    "ag-grid-community": "^32.3.3",
+    "dotenv": "^18.0.10",
+    "express": "^4.22.3"
+  }
+}

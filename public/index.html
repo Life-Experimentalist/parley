@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parley</title>
+  <meta name="description" content="Invoice by speaking or typing, send it through PayPal, and chase late payments with messages you approve.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23a3231b'/%3E%3Cpath d='M9 6v20M13 6v20' stroke='%23ecefe5' stroke-width='1.5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/vendor/hind/latin-400.css">
+  <link rel="stylesheet" href="/vendor/hind/latin-600.css">
+  <link rel="stylesheet" href="/vendor/hind/devanagari-400.css">
+  <link rel="stylesheet" href="/vendor/yatra/latin-400.css">
+  <link rel="stylesheet" href="/vendor/yatra/devanagari-400.css">
+  <link rel="stylesheet" href="/vendor/ag-styles/ag-grid.css">
+  <link rel="stylesheet" href="/vendor/ag-styles/ag-theme-quartz.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <h1 class="wordmark">Parley</h1>
+      <p class="tagline">Invoice by speaking or typing. Chase late payments with messages you approve.</p>
+      <p class="mode" id="mode" role="status">Checking connection…</p>
+    </header>
+
+    <section class="write" aria-labelledby="write-h">
+      <h2 id="write-h">What did you bill?</h2>
+      <label class="sr-only" for="said">Describe the invoice</label>
+      <textarea id="said" class="ruled" rows="4" spellcheck="true"
+        placeholder="Invoiced Dana Whitfield at Northwind, dana@northwind.example, 450 dollars for logo design plus two revision rounds at 60 each, due in 15 days"></textarea>
+      <div class="actions">
+        <button type="button" id="prepare" class="primary">Prepare invoice</button>
+        <button type="button" id="speak" class="plain" hidden>Speak</button>
+        <label class="inline" id="lang-wrap" hidden>
+          <span class="sr-only">Language you will speak</span>
+          <select id="lang">
+            <option value="en-IN">English</option>
+            <option value="hi-IN">हिन्दी</option>
+          </select>
+        </label>
+      </div>
+      <p class="hint">Say it the way you would tell a friend. Hindi and Hinglish are fine. Your phone keyboard mic or Wispr Flow can dictate straight into this box too.</p>
+    </section>
+
+    <section class="check" id="check" aria-labelledby="check-h" hidden>
+      <h2 id="check-h">Check this before it goes out</h2>
+      <ul class="notes" id="notes"></ul>
+      <div class="fields">
+        <label>Client name<input id="f-name" autocomplete="off"></label>
+        <label>Company<input id="f-company" autocomplete="off"></label>
+        <label>Client email<input id="f-email" type="email" autocomplete="off"></label>
+        <label>Currency<select id="f-currency"></select></label>
+        <label>Due on<input id="f-due" type="date"></label>
+      </div>
+      <table class="lines" id="lines">
+        <thead><tr><th scope="col">What for</th><th scope="col" class="num">Qty</th><th scope="col" class="num">Price</th><th scope="col" class="num">Line total</th><th scope="col"><span class="sr-only">Remove</span></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="actions spread">
+        <button type="button" id="add-line" class="plain">Add a line</button>
+        <p class="total" id="total"></p>
+      </div>
+      <div class="actions">
+        <button type="button" id="send" class="primary">Send invoice</button>
+        <button type="button" id="reset" class="plain">Start over</button>
+      </div>
+    </section>
+
+    <section class="owed" aria-labelledby="owed-h">
+      <h2 id="owed-h">Who owes you</h2>
+      <div id="summary" class="summary"></div>
+      <div class="actions">
+        <button type="button" id="chase" class="primary">Draft reminders for late invoices</button>
+        <button type="button" id="refresh" class="plain">Refresh</button>
+      </div>
+      <div id="grid" class="ag-theme-quartz"></div>
+    </section>
+
+    <section class="reminders" id="reminders" aria-labelledby="rem-h" hidden>
+      <h2 id="rem-h">Reminders to review</h2>
+      <p class="hint" id="rem-hint"></p>
+      <div id="rem-list"></div>
+    </section>
+
+    <footer>Hackathon project. It talks to PayPal's sandbox only, so no real money moves.</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="/vendor/ag/ag-grid-community.min.noStyle.js"></script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: parley
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: GEMINI_API_KEYS
+        sync: false
+      - key: ANTHROPIC_API_KEYS
+        sync: false
+      - key: APP_PASSWORD
+        sync: false
+      - key: ACCESS_KEY
+        sync: false
+      - key: LLM_ORDER
+        value: "anthropic,gemini"
+      - key: AI_CALLS_PER_HOUR
+        value: "30"
